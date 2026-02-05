@@ -8,6 +8,7 @@ const Navbar = () => {
   const location = useLocation();
   const isSignupPage = location.pathname === '/signup';
   const isLoginPage = location.pathname === '/login';
+  const isLandingPage = location.pathname === '/';
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -46,10 +47,12 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-4">
+          
           <Button variant="secondary" size="md">
             Start Investment
           </Button>
-          {!isSignupPage && !isLoginPage && (
+
+          {isLandingPage && (
             <Button 
               variant="primary" 
               size="md"
@@ -100,7 +103,7 @@ const Navbar = () => {
               <Button variant="secondary" className="w-full">
                 Start Investment
               </Button>
-              {!isSignupPage && !isLoginPage && (
+              {isLandingPage && (
                 <Button 
                   variant="primary" 
                   className="w-full"

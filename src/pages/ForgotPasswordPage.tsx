@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "@/components/sections/Modal";
+// Removed Modal import since we're not using it anymore
 import FromImage from "@/components/sections/FormImage";
+import { Navbar } from "@/components/sections/Navbar";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  // Removed showSuccessModal state since we're navigating directly
 
   const canSubmit = email.length > 0 && !loading;
 
@@ -21,17 +22,14 @@ export default function ForgotPassword() {
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setLoading(false);
-    setShowSuccessModal(true);
-  };
-
-  // Handle navigation to OTP verification
-  const handleContinueToOTP = () => {
-    setShowSuccessModal(false);
+    
+    // Navigate directly to OTP page instead of showing modal
     navigate('/verify-password-otp');
   };
 
   return (
     <>
+    <Navbar/>
       <div className="min-h-screen flex">
         {/* Left Side - Form Image */}
         <div className="hidden lg:flex lg:w-1/2">
@@ -47,7 +45,7 @@ export default function ForgotPassword() {
             </h1>
 
             <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-8">
-              No worries, we’ll send you reset instructions.
+              No worries, we'll send you reset instructions.
             </p>
               
             <form className="space-y-5" onSubmit={handleSubmit}>
@@ -99,23 +97,6 @@ export default function ForgotPassword() {
           </div>
         </div>
       </div>
-
-
-      {/* Success Modal 
-       {/*
-      <Modal
-        isOpen={showSuccessModal}
-        onClose={() => setShowSuccessModal(false)}
-        title="Verification Code Sent!"
-        message="We've sent a 6-digit verification code to your email address. Please check your inbox and enter the code to continue."
-        buttonText="Continue"
-        onButtonClick={handleContinueToOTP}
-        icon={
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        }
-      />*/}
     </>
   );
 }

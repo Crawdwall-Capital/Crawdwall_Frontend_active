@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "@/components/sections/Modal";
 import FromImage from "@/components/sections/FormImage";
+import { Navbar } from "@/components/sections/Navbar";
 
 export default function VerifyPasswordOtp() {
   const navigate = useNavigate();
@@ -32,18 +33,20 @@ export default function VerifyPasswordOtp() {
 
   const canSubmit = otp.every(digit => digit !== "") && !loading;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!canSubmit) return;
-
-    setLoading(true);
-
-    // simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    setLoading(false);
-    setShowSuccessModal(true);
-  };
+ const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+     if (!canSubmit) return;
+ 
+     setLoading(true);
+ 
+    
+     await new Promise((resolve) => setTimeout(resolve, 2000));
+ 
+     setLoading(false);
+     
+     
+     navigate('/reset-password');
+   };
 
   // Handle navigation to reset password
   const handleContinueToReset = () => {
@@ -53,6 +56,7 @@ export default function VerifyPasswordOtp() {
 
   return (
     <>
+    <Navbar/>
       <div className="min-h-screen flex">
         {/* Left Side - Form Image */}
         <div className="hidden lg:flex lg:w-1/2">
@@ -61,7 +65,7 @@ export default function VerifyPasswordOtp() {
 
         {/* Right Side - OTP Verification Form */}
         <div className="w-full lg:w-1/2 bg-background flex items-center justify-center px-4 py-8">
-          <div className="w-full max-w-lg bg-card rounded-card shadow-lg border border-outline p-8">
+          <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-8">
 
             <h1 className="text-h1-mobile md:text-h1-desktop text-textPrimary mb-2">
               Verify Code
@@ -146,7 +150,7 @@ export default function VerifyPasswordOtp() {
       </div>
 
       {/* Success Modal */}
-      <Modal
+      {/* 
         isOpen={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         title="Code Verified!"
@@ -159,6 +163,7 @@ export default function VerifyPasswordOtp() {
           </svg>
         }
       />
+      */}
     </>
   );
 }
