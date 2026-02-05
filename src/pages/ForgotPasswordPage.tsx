@@ -50,7 +50,7 @@ export default function ForgotPassword() {
               
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-2">
+                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
                   Company Email
                 </p>
                 {/* Email */}
@@ -72,7 +72,7 @@ export default function ForgotPassword() {
                   ${
                     canSubmit
                       ? "bg-primary text-white hover:opacity-90"
-                      : "bg-primaryContainer text-onPrimaryContainer cursor-not-allowed"
+                      : "bg-primaryContainer text-white cursor-not-allowed"
                   }
                 `}
               >

@@ -68,18 +68,22 @@ export default function VerifyPasswordOtp() {
           <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-8">
 
             <h1 className="text-h1-mobile md:text-h1-desktop text-textPrimary mb-2">
-              Verify Code
+              Email Verification
             </h1>
 
             <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-8">
-              Enter the 6-digit verification code we sent to your email address.
+              We send a code to <span className="font-semibold">name@company.com</span>. 
+              <button 
+                    type="button"
+                    className="text-secondary font-medium hover:underline"
+                  >
+                    Change Email?
+                  </button> 
             </p>
               
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-4">
-                  Verification Code
-                </p>
+               
                 {/* OTP Input Boxes */}
                 <div className="flex gap-3 justify-center mb-6">
                   {otp.map((digit, index) => (
@@ -123,23 +127,14 @@ export default function VerifyPasswordOtp() {
                   ${
                     canSubmit
                       ? "bg-primary text-white hover:opacity-90"
-                      : "bg-primaryContainer text-onPrimaryContainer cursor-not-allowed"
+                      : "bg-primaryContainer text-white cursor-not-allowed"
                   }
                 `}
               >
                 {loading ? "Verifying..." : "Verify Code"}
               </button>
 
-              <p className="text-center text-body-sm-desktop text-textSecondary">
-                Want to try a different email?{" "}
-                <button 
-                  type="button"
-                  onClick={() => navigate('/forgot-password')}
-                  className="text-primary font-medium hover:underline"
-                >
-                  Go Back
-                </button>
-              </p>
+             
 
               <p className="text-center text-body-sm-desktop text-neutral">
                 Terms and conditions | Privacy policy
@@ -150,20 +145,14 @@ export default function VerifyPasswordOtp() {
       </div>
 
       {/* Success Modal */}
-      {/* 
+      <Modal
         isOpen={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         title="Code Verified!"
         message="Your verification code has been confirmed. You can now proceed to reset your password."
         buttonText="Reset Password"
         onButtonClick={handleContinueToReset}
-        icon={
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        }
       />
-      */}
     </>
   );
 }

@@ -10,7 +10,7 @@ const FromImage = () => {
         backgroundRepeat: 'no-repeat'
       }}>
         <div className="text-center space-y-6">
-          <p className="text-h2-mobile md:text-h2-desktop text-white px-8">
+          <p className="text-h2-mobile md:text-h3-desktop text-white px-8">
             Trust is the bedrock of every successful project. Crawdwall provides the infrastructure to scale that trust globally.
           </p>
           <p className="text-body-lg-mobile md:text-body-lg-desktop text-primary">

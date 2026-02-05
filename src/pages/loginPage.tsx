@@ -58,13 +58,13 @@ export default function Login() {
               
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-2">
+                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
                   Company Email
                 </p>
                 {/* Email */}
                 <input
                   type="email"
-                  placeholder="Email address"
+                  placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full border border-outline rounded-button px-4 py-3 focus-ring"
@@ -73,14 +73,14 @@ export default function Login() {
               </div>
 
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-2">
+                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
                   Password
                 </p>
                 {/* Password */}
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder="******"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full border border-outline rounded-button px-4 py-3 focus-ring pr-12"
@@ -125,7 +125,7 @@ export default function Login() {
                   ${
                     canSubmit
                       ? "bg-primary text-white hover:opacity-90"
-                      : "bg-primaryContainer text-onPrimaryContainer cursor-not-allowed"
+                      : "bg-primaryContainer text-white cursor-not-allowed"
                   }
                 `}
               >
@@ -159,11 +159,6 @@ export default function Login() {
         message="You have successfully signed in to your Crawdwall account. Access your dashboard to manage your projects and funding."
         buttonText="Go to Dashboard"
         onButtonClick={handleGoToDashboard}
-        icon={
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        }
       />
     </>
   );

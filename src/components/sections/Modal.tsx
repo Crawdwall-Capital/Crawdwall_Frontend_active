@@ -8,7 +8,7 @@ interface ModalProps {
   message: string;
   buttonText: string;
   onButtonClick: () => void;
-  icon?: React.ReactNode;
+  useSuccessImage?: boolean;
 }
 
 const Modal = ({ 
@@ -18,7 +18,7 @@ const Modal = ({
   message, 
   buttonText, 
   onButtonClick, 
-  icon 
+  useSuccessImage = true 
 }: ModalProps) => {
   if (!isOpen) return null;
 
@@ -48,12 +48,14 @@ const Modal = ({
 
         {/* Content */}
         <div className="text-center">
-          {/* Icon */}
-          {icon && (
-            <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center text-success">
-                {icon}
-              </div>
+          {/* Success Image */}
+          {useSuccessImage && (
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/images/success.jpeg" 
+                alt="Success" 
+                className="w-20 h-20 object-cover rounded-full"
+              />
             </div>
           )}
 
