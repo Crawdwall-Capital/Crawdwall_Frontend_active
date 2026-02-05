@@ -37,6 +37,7 @@ const config: Config = {
         onErrorContainer: '#641D1D',
         disabledBg: '#F1F5F9',
         white: '#FFFFFF',
+        black: '#000000',
       },
       fontFamily: {
         sans: ['system-ui', 'sans-serif'],
@@ -79,6 +80,15 @@ const config: Config = {
         'card': '0 4px 12px rgba(0, 0, 0, 0.05)',
         'card-hover': '0 8px 24px rgba(0, 0, 0, 0.1)',
         'button': '0 2px 4px rgba(0, 0, 0, 0.1)',
+      },
+      utilities: {
+        '.focus-ring': {
+          '&:focus': {
+            outline: 'none',
+            'border-color': '#347FFA',
+            'box-shadow': '0 0 0 3px rgba(52, 127, 250, 0.1)',
+          },
+        },
       },
     },
   },

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isSignupPage = location.pathname === '/signup';
+  const isLoginPage = location.pathname === '/login';
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -44,9 +49,15 @@ const Navbar = () => {
           <Button variant="secondary" size="md">
             Start Investment
           </Button>
-          <Button variant="primary" size="md">
-            Get Funding
-          </Button>
+          {!isSignupPage && !isLoginPage && (
+            <Button 
+              variant="primary" 
+              size="md"
+              onClick={() => navigate('/signup')}
+            >
+              Get Funding
+            </Button>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -89,9 +100,15 @@ const Navbar = () => {
               <Button variant="secondary" className="w-full">
                 Start Investment
               </Button>
-              <Button variant="primary" className="w-full">
-                Get Funding
-              </Button>
+              {!isSignupPage && !isLoginPage && (
+                <Button 
+                  variant="primary" 
+                  className="w-full"
+                  onClick={() => navigate('/signup')}
+                >
+                  Get Funding
+                </Button>
+              )}
             </div>
           </div>
         </div>

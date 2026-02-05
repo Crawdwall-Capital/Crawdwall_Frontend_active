@@ -65,7 +65,7 @@ const Footer = ({ sections, copyrightText }: FooterProps) => {
         </div>
         
         <div className="pt-8 border-t border-slate-600">
-          <p className="text-center text-body-sm-desktop text-white">
+          <p className="text-center text-body-sm-desktop text-black">
             {copyrightText}
           </p>
         </div>
