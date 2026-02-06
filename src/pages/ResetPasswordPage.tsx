@@ -66,7 +66,7 @@ export default function ResetPassword() {
         <div className="w-full lg:w-1/2 bg-background flex items-center justify-center px-4 py-8">
           <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-12">
 
-            <h1 className="text-h1-mobile md:text-h1-desktop text-textPrimary mb-2 font-bold">
+            <h1 className="text-h1-mobile md:text-h2-desktop text-textPrimary mb-2 font-bold">
               Reset Password
             </h1>
 
@@ -76,7 +76,7 @@ export default function ResetPassword() {
               
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2 font-bold">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2 font-bold">
                    Password
                 </p>
                 {/* New Password */}
@@ -99,15 +99,17 @@ export default function ResetPassword() {
                 </div>
               </div>
 
-              {/* Password Strength Indicator */}
-              <div className="flex gap-2">
-                <div className={`h-1 flex-1 rounded-full transition-colors ${getBarColor(1)}`} />
-                <div className={`h-1 flex-1 rounded-full transition-colors ${getBarColor(2)}`} />
-                <div className={`h-1 flex-1 rounded-full transition-colors ${getBarColor(3)}`} />
-              </div>
+              {/* Password Strength Indicator - Only show when password has content */}
+              {newPassword.length > 0 && (
+                <div className="flex gap-2">
+                  <div className={`h-1 flex-1 rounded-full transition-colors ${getBarColor(1)}`} />
+                  <div className={`h-1 flex-1 rounded-full transition-colors ${getBarColor(2)}`} />
+                  <div className={`h-1 flex-1 rounded-full transition-colors ${getBarColor(3)}`} />
+                </div>
+              )}
 
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Confirm New Password
                 </p>
                 {/* Confirm Password */}
@@ -151,10 +153,6 @@ export default function ResetPassword() {
               >
                 {loading ? "Resetting..." : "Reset Password"}
               </button>
-
-              
-
-             
             </form>
           </div>
         </div>

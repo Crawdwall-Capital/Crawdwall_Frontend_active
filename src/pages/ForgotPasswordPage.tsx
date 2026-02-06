@@ -40,7 +40,7 @@ export default function ForgotPassword() {
         <div className="w-full lg:w-1/2 bg-background flex items-center justify-center px-4 py-8">
           <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-8">
 
-            <h1 className="text-h1-mobile md:text-h1-desktop text-textPrimary mb-2">
+            <h1 className="text-h1-mobile md:text-h2-desktop text-textPrimary mb-2">
               Forgot Password?
             </h1>
 
@@ -50,7 +50,7 @@ export default function ForgotPassword() {
               
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Company Email
                 </p>
                 {/* Email */}

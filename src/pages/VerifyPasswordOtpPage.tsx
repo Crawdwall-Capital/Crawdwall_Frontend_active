@@ -67,15 +67,15 @@ export default function VerifyPasswordOtp() {
         <div className="w-full lg:w-1/2 bg-background flex items-center justify-center px-4 py-8">
           <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-8">
 
-            <h1 className="text-h1-mobile md:text-h1-desktop text-textPrimary mb-2">
+            <h1 className="text-h1-mobile md:text-h2-desktop text-textPrimary mb-2">
               Email Verification
             </h1>
 
             <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-8">
-              We send a code to <span className="font-semibold">name@company.com</span>. 
+              We send a code to <span className="font-semibold">name@company.com</span>.{" "} 
               <button 
                     type="button"
-                    className="text-secondary font-medium hover:underline"
+                    className="text-primary font-medium hover:underline"
                   >
                     Change Email?
                   </button> 

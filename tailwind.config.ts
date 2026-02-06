@@ -27,6 +27,7 @@ const config: Config = {
         outline: '#CBD5E1',
         divider: '#E2E8F0',
         disabledText: '#94A3B8',
+        disableBg:'#F1F5F9',
         disabledBorder: '#C2C7CE',
         secondaryBg: '#F1F5F9',
         primaryContainer: '#C0D7FD',
@@ -46,7 +47,7 @@ const config: Config = {
         // Desktop Typography
         'h1-desktop': ['56px', { lineHeight: '1.2', fontWeight: '600' }],
         'h2-desktop': ['40px', { lineHeight: '1.2', fontWeight: '600' }],
-        'h3-desktop': ['36px', { lineHeight: '1.2', fontWeight: '600' }],
+        'h3-desktop': ['32px', { lineHeight: '1.2', fontWeight: '600' }],
         'body-lg-desktop': ['24px', { lineHeight: '1.5', fontWeight: '500' }],
         'body-md-desktop': ['18px', { lineHeight: '1.5', fontWeight: '400' }],
         'body-sm-desktop': ['14px', { lineHeight: '1.5', fontWeight: '400' }],

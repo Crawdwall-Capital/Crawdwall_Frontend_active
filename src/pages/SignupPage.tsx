@@ -62,7 +62,7 @@ const SignupPage = () => {
 
   const handleStartKYC = () => {
     setShowSuccessModal(false);
-    console.log("Starting KYC process...");
+    navigate('/dashboard/kyc');
   };
 
   const strengthLabel = getStrengthLabel();
@@ -81,7 +81,7 @@ const SignupPage = () => {
         <div className="w-full lg:w-1/2 bg-background flex items-center justify-center px-8 py-8">
           <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-12">
             <h1 className="text-h2-mobile md:text-h2-desktop text-textPrimary mb-2">
-              Build the future project finance.
+              Build the future of project finance.
             </h1>
 
             <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-8">
@@ -91,12 +91,12 @@ const SignupPage = () => {
             <form className="space-y-5" onSubmit={handleSubmit}>
               {/* Company Name */}
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Company Name
                 </p>
                 <input
                   type="text"
-                  placeholder="Company name"
+                  placeholder="eg. Financial global holdings"
                   className="w-full border border-outline rounded-button px-4 py-3 focus-ring"
                   required
                 />
@@ -104,12 +104,12 @@ const SignupPage = () => {
 
               {/* Company Email */}
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Company Email
                 </p>
                 <input
                   type="email"
-                  placeholder="Company email"
+                  placeholder="name@company.com"
                   className="w-full border border-outline rounded-button px-4 py-3 focus-ring"
                   required
                 />
@@ -117,13 +117,13 @@ const SignupPage = () => {
               
               {/* Password */}
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Password
                 </p>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder="*******"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full border border-outline rounded-button px-4 py-3 focus-ring pr-12"
@@ -166,13 +166,13 @@ const SignupPage = () => {
 
               {/* Confirm Password */}
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Confirm Password
                 </p>
                 <div className="relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
-                    placeholder="Confirm password"
+                    placeholder="******"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full border border-outline rounded-button px-4 py-3 focus-ring pr-12"
@@ -204,7 +204,7 @@ const SignupPage = () => {
                   type="checkbox"
                   checked={agreed}
                   onChange={(e) => setAgreed(e.target.checked)}
-                  className="mt-1 accent-primary"
+                  className="mt-1 accent-primary w-6 h-6"
                   required
                 />
                 <span>
@@ -220,7 +220,7 @@ const SignupPage = () => {
                 className={`w-full rounded-button py-3 text-button-desktop shadow-button transition
                   ${canSubmit
                     ? "bg-primary text-white hover:opacity-90"
-                    : "bg-primaryContainer text-onPrimaryContainer cursor-not-allowed"
+                    : "bg-primaryContainer text-white cursor-not-allowed"
                   }
                 `}
               >

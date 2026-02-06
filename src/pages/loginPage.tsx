@@ -31,8 +31,7 @@ export default function Login() {
   // Handle dashboard navigation
   const handleGoToDashboard = () => {
     setShowSuccessModal(false);
-    // Add navigation to dashboard page here when ready
-    console.log("Navigating to dashboard...");
+    navigate('/dashboard');
   };
 
   return (
@@ -48,7 +47,7 @@ export default function Login() {
         <div className="w-full lg:w-1/2 bg-background flex items-center justify-center px-8 py-8">
           <div className="w-full max-w-x1 bg-card rounded-card shadow-lg border border-outline p-8">
 
-            <h1 className="text-h1-mobile md:text-h1-desktop text-textPrimary mb-2">
+            <h1 className="text-h1-mobile md:text-h2-desktop text-textPrimary mb-2">
               Welcome back !
             </h1>
 
@@ -58,7 +57,7 @@ export default function Login() {
               
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Company Email
                 </p>
                 {/* Email */}
@@ -73,7 +72,7 @@ export default function Login() {
               </div>
 
               <div>
-                <p className="text-body-md-mobile md:text-body-md-desktop text-black mb-2">
+                <p className="text-body-md-mobile md:text-body-sm-desktop text-black mb-2">
                   Password
                 </p>
                 {/* Password */}
@@ -143,7 +142,7 @@ export default function Login() {
                 </button>
               </p>
 
-              <p className="text-center text-body-sm-desktop text-neutral">
+              <p className="text-center text-body-sm-desktop text-neutral hover">
                 Terms and conditions | Privacy policy
               </p>
             </form>
