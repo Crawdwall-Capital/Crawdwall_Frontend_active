@@ -7,6 +7,10 @@ import ForgotPassword from "./pages/ForgotPasswordPage";
 import VerifyPasswordOtp from "./pages/VerifyPasswordOtpPage";
 import ResetPassword from "./pages/ResetPasswordPage";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
+import { ProposalPage } from "./pages/dashboard/ProposalPage";
+import { KYCVerificationPage } from "./pages/dashboard/KYCVerificationPage";
+import { SettingsPage } from "./pages/dashboard/SettingsPage";
+import { ProfilePage } from "./pages/dashboard/ProfilePage";
 
 function App() {
   return (
@@ -19,10 +23,10 @@ function App() {
         <Route path="/verify-password-otp" element={<VerifyPasswordOtp />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/dashboard/proposals" element={<DashboardPage />} />
-        <Route path="/dashboard/kyc" element={<DashboardPage />} />
-        <Route path="/dashboard/settings" element={<DashboardPage />} />
-        <Route path="/dashboard/profile" element={<DashboardPage />} />
+        <Route path="/dashboard/proposals" element={<ProposalPage />} />
+        <Route path="/dashboard/kyc" element={<KYCVerificationPage />} />
+        <Route path="/dashboard/settings" element={<SettingsPage />} />
+        <Route path="/dashboard/profile" element={<ProfilePage />} />
       </Routes>
     </main>
   );
