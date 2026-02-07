@@ -27,7 +27,7 @@ const Sidebar = () => {
     },
     { 
       id: 'kyc', 
-      label: 'KYC Verification', 
+      label: 'Verification (KYC)', 
       icon: Shield, 
       path: '/dashboard/kyc' 
     },
@@ -50,11 +50,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-card h-screen flex flex-col">
+    <div className="w-64 bg-secondary h-screen flex flex-col">
       {/* Logo */}
       <div className="p-6  border-outline flex items-center justify-center">
         <img 
-          src="/images/CW1.png" 
+          src="/images/whiteLogo.png" 
           alt="Crawdwall Logo" 
           className="h-10 w-auto"
         />
@@ -63,7 +63,7 @@ const Sidebar = () => {
       
       {/* Navigation */}
       <nav className="flex-1 p-4">
-        <p className="text-disabledText p-2 text-body-sm-desktop">
+        <p className="text-white p-2 text-body-sm-desktop">
         MAIN MENU
       </p>
         <ul className="space-y-2">
@@ -78,7 +78,7 @@ const Sidebar = () => {
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-button text-left transition-colors
                     ${active 
                       ? 'bg-primaryContainer text-black' 
-                      : 'text-textSecondary hover:bg-secondaryBg hover:text-textPrimary '
+                      : 'text-white hover:bg-secondaryBg hover:text-textPrimary '
                     }
                   `}
                 >

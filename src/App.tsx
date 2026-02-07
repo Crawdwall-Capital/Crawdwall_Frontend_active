@@ -12,6 +12,8 @@ import { KYCVerificationPage } from "./pages/dashboard/KYCVerificationPage";
 import { SettingsPage } from "./pages/dashboard/SettingsPage";
 import { ProfilePage } from "./pages/dashboard/ProfilePage";
 
+import { FinancingPage } from "./pages/dashboard/financeServices/FinancingPage";
+
 function App() {
   return (
     <main>
@@ -27,6 +29,7 @@ function App() {
         <Route path="/dashboard/kyc" element={<KYCVerificationPage />} />
         <Route path="/dashboard/settings" element={<SettingsPage />} />
         <Route path="/dashboard/profile" element={<ProfilePage />} />
+        <Route path="/dashboard/financeServices/finanace" element={<FinancingPage/>} />
       </Routes>
     </main>
   );

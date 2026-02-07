@@ -4,14 +4,14 @@ import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { KYCCard } from "@/components/dashboard/KYCCard";
 import {
-  DollarSign,
+  Wallet,
   TrendingUp,
   CheckCircle,
   Clock,
   AlertCircle,
   User,
   ArrowRight, // Changed from MoveRight to ArrowRight since you're using ArrowRight
-  MoveRight // Added if you want to use MoveRight
+
 } from "lucide-react";
 
 const DashboardPage = () => {
@@ -25,23 +25,23 @@ const DashboardPage = () => {
       description: "Annual technology conference in Lagos",
       service: "Event Financing",
       status: "In Progress",
-      budget: "$50,000"
+      budget: "N50,000"
     },
     {
-      id: "PRJ002", 
+      id: "PRJ002",
       name: "Music Festival",
       description: "3-day music festival in Abuja",
       service: "Fundraising",
       status: "Under Review",
-      budget: "$120,000"
+      budget: "N120,000"
     },
     {
       id: "PRJ003",
       name: "Business Summit",
       description: "Corporate networking event",
-      service: "Event Financing", 
+      service: "Event Financing",
       status: "Approved",
-      budget: "$75,000"
+      budget: "N75,000"
     }
   ];
 
@@ -50,7 +50,7 @@ const DashboardPage = () => {
       id: 1,
       title: "Complete KYC Verification",
       description: "Your account remains limited until verification is submitted",
-      priority: "high",
+      priority: "low",
       link: "start"
     },
     {
@@ -73,8 +73,8 @@ const DashboardPage = () => {
 
   const getTaskStatusIcon = (priority: string) => {
     switch (priority) {
-      case 'completed': return <CheckCircle size={30} className="text-success" />;
-      case 'in-progress': return <Clock size={30} className="text-warning" />;
+      case 'low': return <CheckCircle size={30} className="text-success" />;
+      case 'medium': return <Clock size={30} className="text-warning" />;
       case 'high': return <AlertCircle size={30} className="text-error" />;
       default: return <User size={30} className="text-textSecondary" />;
     }
@@ -95,18 +95,20 @@ const DashboardPage = () => {
         <p className="text-body-md-desktop text-primary mb-6" style={{ fontWeight: 600 }}>
           Financial Services
         </p>
-        
+
         {/* Top Row - Dashboard Cards and KYC Card */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Dashboard Cards Container */}
           <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Dashboard Card 1 */}
             <DashboardCard
-              icon={DollarSign}
+              icon={Wallet}
               title="Financing"
               summary="Receive direct capital from Crawdwall with structured repayment or revenue sharing."
-              buttonText="Complete KYC to access"
-              isLocked={true}
+              lockedButtonText="Complete KYC to access"
+              unlockedButtonText="Apply for Financing"
+              isLocked={false}
+              navigateTo="/dashboard/financeServices/finanace"
             />
 
             {/* Dashboard Card 2 */}
@@ -114,8 +116,10 @@ const DashboardPage = () => {
               icon={TrendingUp}
               title="Fundraising"
               summary="Raise capital from external investors with Crawdwall structuring and oversight."
-              buttonText="Complete KYC to access"
-              isLocked={true}
+              lockedButtonText="Complete KYC to access"
+              unlockedButtonText="Apply for Fundraising"
+              isLocked={false}
+              navigateTo="/dashboard/proposals"
             />
           </div>
 
@@ -123,8 +127,9 @@ const DashboardPage = () => {
           <div className="w-full lg:w-[290px] flex-shrink-0">
             <KYCCard
               title="Level 1 Verification"
-              percentage={6}
+              percentage={10}
               summary="Verify your company identity to unlock full fundraising and investment features"
+              completeSummary="Our compliance team is currently reviewing your submission. Estimated time: 24-48hours"
               buttonText="Start Verification"
               onButtonClick={() => navigate('/dashboard/kyc')}
             />
@@ -218,7 +223,7 @@ const DashboardPage = () => {
                     <p className={`text-body-sm-desktop ${getPriorityColor(task.priority)}`} style={{ fontWeight: 500 }}>
                       {task.priority.toUpperCase()}
                     </p>
-                    
+
                     {/* Task Title */}
                     <div className="text-button-desktop text-textPrimary font-medium mt-1">
                       {task.title}
