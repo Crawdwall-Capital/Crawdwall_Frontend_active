@@ -17,6 +17,7 @@ export interface VerticalTimelineProps {
     showStepNumbers?: boolean;
     className?: string;
     defaultIcon?: LucideIcon;
+    completedSteps?: (number | string)[];
 }
 
 const VerticalTimeline = ({
@@ -27,6 +28,7 @@ const VerticalTimeline = ({
     showStepNumbers = false,
     className = "",
     defaultIcon: DefaultIcon = Circle,
+    completedSteps = [],
 }: VerticalTimelineProps) => {
     return (
         <div className={`relative ${className}`}>
@@ -38,9 +40,8 @@ const VerticalTimeline = ({
             <div className="space-y-8">
                 {steps.map((step, index) => {
                     const isCurrent = step.id === activeStep;
-                    const isCompleted = typeof step.id === 'number' && typeof activeStep === 'number'
-                        ? step.id < activeStep
-                        : false;
+                    const isCompleted = completedSteps.includes(step.id) || 
+                        (typeof step.id === 'number' && typeof activeStep === 'number' && step.id < activeStep);
                     const isClickable = !!onChangeStep;
 
                     const StepIcon = step.icon || DefaultIcon;
