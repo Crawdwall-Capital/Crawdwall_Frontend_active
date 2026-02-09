@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage";
 import Login from "./pages/loginPage";
 import { SignupPage } from "./pages/SignupPage";
@@ -15,9 +15,11 @@ import { ProfilePage } from "./pages/dashboard/ProfilePage";
 import { FinancingPage } from "./pages/dashboard/financeServices/FinancingPage";
 
 function App() {
+  const location = useLocation();
+  
   return (
     <main>
-      <Routes>
+      <Routes key={location.pathname}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<Login />} />

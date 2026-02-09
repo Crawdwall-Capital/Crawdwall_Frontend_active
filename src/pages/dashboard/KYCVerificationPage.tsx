@@ -1,5 +1,6 @@
 // pages/kyc-verification/index.tsx
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { Shield, CheckCircle, UserCog, Building, Medal, ShieldCheck, BadgeCheck, FileText, CreditCard, FileCheck, Lock } from "lucide-react";
 import VerticalTimeline from "@/components/dashboard/VerticalTimeline";
@@ -11,6 +12,7 @@ import { LeadershipOwnershipForm } from "@/components/kyc/LeadershipOwnershipFor
 import { TrackRecordForm } from "@/components/kyc/TrackRecordForm";
 import { ComplianceIdentityForm } from "@/components/kyc/ComplianceIdentityForm";
 import { DeclarationsConsentForm } from "@/components/kyc/DeclarationsConsentForm";
+import { forceNavigate } from "@/lib/navigation";
 
 // Level 1 KYC Steps
 const level1Steps = [
@@ -163,7 +165,7 @@ const KYCVerificationPage = () => {
     }
   };
 
-  const handleStepChange = (stepId: number) => {
+  const handleStepChange = (stepId: number | string) => {
     if (typeof stepId === 'number') {
       if (activeLevel === 1) {
         setActiveStep(stepId);
@@ -273,6 +275,9 @@ const KYCVerificationPage = () => {
   return (
     <DashboardLayout pageTitle="Verification (KYC)">
       <div className="space-y-6">
+        {/* Debug Navigation Panel - Remove after testing */}
+        
+
         <div className="flex flex-col md:flex-row gap-6">
           {/* Left Column - Vertical Timeline */}
           <div className="md:w-1/4 space-y-6">

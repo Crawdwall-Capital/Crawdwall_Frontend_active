@@ -1,23 +1,33 @@
 import React from "react";
-import { Bell, MessageCircle, User  } from "lucide-react";
+import { Bell, MessageCircle, User, Menu } from "lucide-react";
 
 interface DashboardNavbarProps {
   pageTitle: string;
+  onMenuClick: () => void;
 }
 
-const DashboardNavbar = ({ pageTitle }: DashboardNavbarProps) => {
+const DashboardNavbar = ({ pageTitle, onMenuClick }: DashboardNavbarProps) => {
   return (
-    <div className="bg-card  px-6 py-4">
+    <div className="bg-card px-4 md:px-6 py-4 border-b border-divider">
       <div className="flex items-center justify-between">
-        {/* Page Title */}
-        <div>
+        {/* Left Side - Menu Button (mobile) and Page Title */}
+        <div className="flex items-center gap-3">
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={onMenuClick}
+            className="lg:hidden p-2 text-textSecondary hover:text-textPrimary hover:bg-secondaryBg rounded-button transition-colors"
+          >
+            <Menu size={20} />
+          </button>
+
+          {/* Page Title */}
           <h1 className="text-h3-mobile md:text-h3-desktop text-textPrimary" style={{ fontWeight: 700 }}>
             {pageTitle}
           </h1>
         </div>
 
         {/* Right Side - Icons and Profile */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           {/* Message Icon */}
           <button className="p-2 text-textSecondary hover:text-textPrimary hover:bg-secondaryBg rounded-button transition-colors">
             <MessageCircle size={20} />

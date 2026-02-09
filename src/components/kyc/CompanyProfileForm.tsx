@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Shield, ChevronUp, Medal, Building, FileText, CheckCircle, Mail, Phone, Globe, Upload, Eye, ChevronDown, Lock, UserCog, ShieldCheck, BadgeCheck, X, Plus, Facebook, Instagram, Twitter, Linkedin, Youtube, User, Calendar, Target, Award, Users, DollarSign, FileCheck, Home, Building2, CreditCard, Trash2, FileUp, FileSignature, CalendarDays } from "lucide-react";
+import { Globe, Mail, Phone, X, Plus } from "lucide-react";
 
 const CompanyProfileForm = ({ onCompletionChange }: { onCompletionChange: (percent: number) => void }) => {
   const [companyName, setCompanyName] = useState("");
   const [companyType, setCompanyType] = useState("");
+  const [countryOfRegistration, setCountryOfRegistration] = useState("");
+  const [dateEstablished, setDateEstablished] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
   const [website, setWebsite] = useState("");
   const [socialLinks, setSocialLinks] = useState<Array<{ platform: string; url: string }>>([
     { platform: "", url: "" }
@@ -26,14 +31,38 @@ const CompanyProfileForm = ({ onCompletionChange }: { onCompletionChange: (perce
     "Other"
   ];
 
+  const countries = [
+    "Nigeria",
+    "Ghana",
+    "Kenya",
+    "South Africa",
+    "United States",
+    "United Kingdom",
+    "Canada",
+    "India",
+    "China",
+    "Germany",
+    "France",
+    "Japan",
+    "Australia",
+    "Brazil",
+    "Mexico",
+    "Egypt",
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Singapore",
+    "Malaysia",
+    "Other"
+  ];
+
   const socialPlatforms = [
-    { value: "facebook", label: "Facebook", icon: Facebook },
-    { value: "instagram", label: "Instagram", icon: Instagram },
-    { value: "twitter", label: "Twitter/X", icon: Twitter },
-    { value: "linkedin", label: "LinkedIn", icon: Linkedin },
-    { value: "youtube", label: "YouTube", icon: Youtube },
-    { value: "tiktok", label: "TikTok", icon: () => <span className="text-sm">TikTok</span> },
-    { value: "other", label: "Other", icon: Globe }
+    { value: "facebook", label: "Facebook" },
+    { value: "instagram", label: "Instagram" },
+    { value: "twitter", label: "Twitter/X" },
+    { value: "linkedin", label: "LinkedIn" },
+    { value: "youtube", label: "YouTube" },
+    { value: "tiktok", label: "TikTok" },
+    { value: "other", label: "Other" }
   ];
 
   const countryCodes = [
@@ -86,10 +115,15 @@ const CompanyProfileForm = ({ onCompletionChange }: { onCompletionChange: (perce
   // Calculate completion percentage for this form
   useEffect(() => {
     let completedFields = 0;
-    const totalFields = 6; // Company Name, Type, Website, Email, Phone Numbers (min 1), Social Links (optional)
+    const totalFields = 10; // Company Name, Type, Country of Reg, Date Established, Street, City, Country, Website, Email, Phone
     
     if (companyName.trim()) completedFields++;
     if (companyType) completedFields++;
+    if (countryOfRegistration) completedFields++;
+    if (dateEstablished) completedFields++;
+    if (streetAddress.trim()) completedFields++;
+    if (city.trim()) completedFields++;
+    if (country) completedFields++;
     if (website.trim()) completedFields++;
     if (companyEmail.trim()) completedFields++;
     
@@ -97,13 +131,15 @@ const CompanyProfileForm = ({ onCompletionChange }: { onCompletionChange: (perce
     const hasPhoneNumber = phoneNumbers.some(phone => phone.number.trim());
     if (hasPhoneNumber) completedFields++;
     
-    // Social links are optional, but we'll count them if filled
-    const hasSocialLinks = socialLinks.some(link => link.url.trim());
-    if (hasSocialLinks) completedFields++;
+    // Social links are optional, don't count toward completion
     
     const completionPercent = Math.round((completedFields / totalFields) * 100);
     onCompletionChange(completionPercent);
-  }, [companyName, companyType, website, companyEmail, phoneNumbers, socialLinks, onCompletionChange]);
+  }, [
+    companyName, companyType, countryOfRegistration, dateEstablished, 
+    streetAddress, city, country, website, companyEmail, phoneNumbers, 
+    onCompletionChange
+  ]);
 
   return (
     <div className="space-y-6">
@@ -138,6 +174,88 @@ const CompanyProfileForm = ({ onCompletionChange }: { onCompletionChange: (perce
             </option>
           ))}
         </select>
+      </div>
+
+      <div>
+        <label className="block text-body-sm-desktop text-textSecondary mb-2">
+          Country of Registration *
+        </label>
+        <select
+          className="w-full border border-outline rounded-button px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
+          value={countryOfRegistration}
+          onChange={(e) => setCountryOfRegistration(e.target.value)}
+          required
+        >
+          <option value="">Select country</option>
+          {countries.map((country, index) => (
+            <option key={index} value={country.toLowerCase().replace(/\s+/g, '-')}>
+              {country}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-body-sm-desktop text-textSecondary mb-2">
+          Date Established *
+        </label>
+        <input
+          type="date"
+          className="w-full border border-outline rounded-button px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
+          value={dateEstablished}
+          onChange={(e) => setDateEstablished(e.target.value)}
+          required
+        />
+      </div>
+
+      {/* Single line for Street Address, City, Country */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label className="block text-body-sm-desktop text-textSecondary mb-2">
+            Street Address *
+          </label>
+          <input
+            type="text"
+            className="w-full border border-outline rounded-button px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="123 Main Street"
+            value={streetAddress}
+            onChange={(e) => setStreetAddress(e.target.value)}
+            required
+          />
+        </div>
+        
+        <div>
+          <label className="block text-body-sm-desktop text-textSecondary mb-2">
+            City *
+          </label>
+          <input
+            type="text"
+            className="w-full border border-outline rounded-button px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="Lagos"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </div>
+        
+        <div>
+          <label className="block text-body-sm-desktop text-textSecondary mb-2">
+            Country *
+          </label>
+          <select
+            className="w-full border border-outline rounded-button px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            required
+          >
+            <option value="">Select country</option>
+            {countries.map((countryName, index) => (
+              <option key={index} value={countryName.toLowerCase().replace(/\s+/g, '-')}>
+                {countryName}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>

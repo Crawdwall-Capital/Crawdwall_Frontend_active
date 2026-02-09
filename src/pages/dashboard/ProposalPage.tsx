@@ -133,7 +133,7 @@ const ProposalPage = () => {
     <DashboardLayout pageTitle="Proposals">
       <div className="space-y-6">
         {/* Proposals Table */}
-        <div className="bg-card border border-outline rounded-card p-6">
+        <div className="bg-card border border-outline rounded-card p-4 md:p-6">
           {/* Header with search, filter, and create button */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
             {/* Left: Search Bar */}
@@ -167,79 +167,84 @@ const ProposalPage = () => {
             </div>
 
             {/* Right: Create New Proposal Button */}
-            <Button variant="primary" size="md">
+            <Button variant="primary" size="md" className="w-full md:w-auto">
               Create New Proposal
             </Button>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[800px]">
-              <thead className="bg-disableBg rounded-t-card">
-                <tr className="border-b border-outline">
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Project ID
-                  </th>
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Project Name/Description
-                  </th>
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Services
-                  </th>
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Submission Date
-                  </th>
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Budget
-                  </th>
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Status
-                  </th>
-                  <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {proposals.map((proposal) => (
-                  <tr key={proposal.id} className="border-b border-divider hover:bg-secondaryBg/50 transition-colors">
-                    <td className="p-3 text-body-sm-desktop text-textPrimary font-medium">
-                      {proposal.id}
-                    </td>
-                    <td className="p-3">
-                      <div>
-                        <div className="text-body-sm-desktop text-textPrimary font-medium">
-                          {proposal.name}
-                        </div>
-                        <div className="text-xs text-textSecondary">
-                          {proposal.description}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-3 text-body-sm-desktop text-textSecondary">
-                      {proposal.service}
-                    </td>
-                    <td className="p-3 text-body-sm-desktop text-textSecondary">
-                      {proposal.submissionDate}
-                    </td>
-                    <td className="p-3 text-body-sm-desktop text-textPrimary font-semibold">
-                      {proposal.budget}
-                    </td>
-                    <td className="p-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(proposal.status)}`}>
-                        {proposal.status}
-                      </span>
-                    </td>
-                    <td className="p-3">
-                      <div className="flex items-center gap-2">
-                        <button className="p-1 hover:bg-divider rounded transition-colors" title="View">
-                          <MoreVertical size={16} className="text-textSecondary" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/* Table wrapper with horizontal scroll on mobile */}
+          <div className="overflow-x-auto -mx-4 md:mx-0">
+            <div className="inline-block min-w-full align-middle">
+              <div className="overflow-hidden">
+                <table className="min-w-full divide-y divide-divider">
+                  <thead className="bg-disableBg">
+                    <tr>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Project ID
+                      </th>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Project Name/Description
+                      </th>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Services
+                      </th>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Submission Date
+                      </th>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Budget
+                      </th>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Status
+                      </th>
+                      <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-card divide-y divide-divider">
+                    {proposals.map((proposal) => (
+                      <tr key={proposal.id} className="hover:bg-secondaryBg/50 transition-colors">
+                        <td className="px-3 py-3 text-body-sm-desktop text-textPrimary font-medium whitespace-nowrap">
+                          {proposal.id}
+                        </td>
+                        <td className="px-3 py-3 min-w-[200px]">
+                          <div>
+                            <div className="text-body-sm-desktop text-textPrimary font-medium">
+                              {proposal.name}
+                            </div>
+                            <div className="text-xs text-textSecondary">
+                              {proposal.description}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-3 py-3 text-body-sm-desktop text-textSecondary whitespace-nowrap">
+                          {proposal.service}
+                        </td>
+                        <td className="px-3 py-3 text-body-sm-desktop text-textSecondary whitespace-nowrap">
+                          {proposal.submissionDate}
+                        </td>
+                        <td className="px-3 py-3 text-body-sm-desktop text-textPrimary font-semibold whitespace-nowrap">
+                          {proposal.budget}
+                        </td>
+                        <td className="px-3 py-3 whitespace-nowrap">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(proposal.status)}`}>
+                            {proposal.status}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3 whitespace-nowrap">
+                          <div className="flex items-center gap-2">
+                            <button className="p-1 hover:bg-divider rounded transition-colors" title="View">
+                              <MoreVertical size={16} className="text-textSecondary" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

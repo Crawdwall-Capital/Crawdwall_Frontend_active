@@ -17,7 +17,7 @@ export interface VerticalTimelineProps {
     showStepNumbers?: boolean;
     className?: string;
     defaultIcon?: LucideIcon;
-    completedSteps?: (number | string)[];
+    completedSteps?: (number | string)[]; // Only steps that are 100% complete
 }
 
 const VerticalTimeline = ({
@@ -28,7 +28,7 @@ const VerticalTimeline = ({
     showStepNumbers = false,
     className = "",
     defaultIcon: DefaultIcon = Circle,
-    completedSteps = [],
+    completedSteps = [], // This should only contain IDs of steps that are 100% complete
 }: VerticalTimelineProps) => {
     return (
         <div className={`relative ${className}`}>
@@ -40,8 +40,7 @@ const VerticalTimeline = ({
             <div className="space-y-8">
                 {steps.map((step, index) => {
                     const isCurrent = step.id === activeStep;
-                    const isCompleted = completedSteps.includes(step.id) || 
-                        (typeof step.id === 'number' && typeof activeStep === 'number' && step.id < activeStep);
+                    const isCompleted = completedSteps.includes(step.id); // ONLY if explicitly marked as completed
                     const isClickable = !!onChangeStep;
 
                     const StepIcon = step.icon || DefaultIcon;
@@ -55,27 +54,58 @@ const VerticalTimeline = ({
                         >
                             {/* Step title - on the LEFT side */}
                             <div className={`text-body-md-desktop font-medium pr-4
-                ${isCurrent ? 'text-primary text-body-sm-desktop' : 'text-textSecondary text-body-sm-desktop'}`}>
+                                ${isCurrent ? 'text-primary text-body-sm-desktop' : 
+                                  isCompleted ? 'text-success text-body-sm-desktop' :
+                                  'text-textSecondary text-body-sm-desktop'}`}>
                                 {step.title}
-
-
+                                
+                                {/* Optional description */}
+                                {step.description && (
+                                    <p className={`text-xs mt-1 ${
+                                        isCurrent ? 'text-primary/70' : 
+                                        isCompleted ? 'text-success/70' : 
+                                        'text-textSecondary'
+                                    }`}>
+                                        {step.description}
+                                    </p>
+                                )}
+                                
+                                {/* Status indicator 
+                                <div className="mt-1">
+                                    {isCompleted ? (
+                                        <span className="inline-flex items-center gap-1 text-xs text-success font-medium">
+                                            <CheckCircle size={12} />
+                                            Completed
+                                        </span>
+                                    ) : isCurrent ? (
+                                        <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
+                                            <Circle size={12} />
+                                            In Progress
+                                        </span>
+                                    ) : (
+                                        <span className="text-xs text-textSecondary">
+                                            Pending
+                                        </span>
+                                    )}
+                                </div>
+                                */}
                             </div>
 
                             {/* Step indicator - on the RIGHT side */}
                             <div className="relative z-10 flex-shrink-0">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 
-                  ${isCurrent ? 'bg-primary border-primary' :
-                                        isCompleted ? 'bg-success border-success' :
-                                            'bg-white border-divider'}`}
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-300
+                                    ${isCurrent ? 'bg-primary border-primary' :
+                                      isCompleted ? 'bg-success border-success' :
+                                      'bg-white border-outline'}`}
                                 >
-                                    {isCurrent ? (
-                                        <StepIcon size={16} className="text-white" />
-                                    ) : isCompleted ? (
+                                    {isCompleted ? (
                                         <CheckCircle size={16} className="text-white" />
+                                    ) : isCurrent ? (
+                                        <StepIcon size={16} className="text-white" />
                                     ) : step.icon ? (
                                         <StepIcon size={16} className={iconColor} />
                                     ) : (
-                                        <StepIcon size={16} className="text-textSecondary" />
+                                        <DefaultIcon size={16} className="text-textSecondary" />
                                     )}
                                 </div>
 
@@ -84,8 +114,6 @@ const VerticalTimeline = ({
                                     <div className="absolute left-3.5 top-8 h-8 w-0.5 bg-divider"></div>
                                 )}
                             </div>
-
-
                         </div>
                     );
                 })}

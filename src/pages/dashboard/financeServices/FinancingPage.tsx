@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import VerticalTimeline, { TimelineStep } from "@/components/dashboard/VerticalTimeline";
-import { User, Building, FileText, Shield, CreditCard, Bell, Lock } from "lucide-react";
+import { User, Building, FileText, Shield } from "lucide-react";
 
 const FinancingPage = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -35,17 +35,17 @@ const FinancingPage = () => {
 
   return (
     <DashboardLayout pageTitle="KYC Verification">
-      <div className="p-6">
-        <h2 className="text-h2-desktop text-textPrimary mb-2">KYC Verification</h2>
-        <p className="text-body-md-desktop text-textSecondary mb-6">
+      <div className="p-2 md:p-6">
+        <h2 className="text-h2-mobile md:text-h2-desktop text-textPrimary mb-2">KYC Verification</h2>
+        <p className="text-body-md-mobile md:text-body-md-desktop text-textSecondary mb-6">
           Complete all 4 steps to verify your account
         </p>
         
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Left column - Timeline (takes 1 column) */}
           <div className="lg:col-span-1">
-            <div className="bg-card border border-outline rounded-card p-6">
-              <h3 className="text-h3-desktop text-textPrimary mb-6">Verification Steps</h3>
+            <div className="bg-card border border-outline rounded-card p-4 md:p-6">
+              <h3 className="text-h3-mobile md:text-h3-desktop text-textPrimary mb-6">Verification Steps</h3>
               <VerticalTimeline 
                 steps={steps}
                 activeStep={activeStep}
@@ -62,9 +62,9 @@ const FinancingPage = () => {
 
           {/* Right column - Content for current step (takes 3 columns) */}
           <div className="lg:col-span-3">
-            <div className="bg-card border border-outline rounded-card p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-h3-desktop text-textPrimary">
+            <div className="bg-card border border-outline rounded-card p-4 md:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
+                <h3 className="text-h3-mobile md:text-h3-desktop text-textPrimary">
                   {steps.find(step => step.id === activeStep)?.title}
                 </h3>
                 <span className="text-body-sm-desktop text-primary font-medium">
@@ -79,7 +79,7 @@ const FinancingPage = () => {
               {activeStep === 4 && <VerificationForm />}
               
               {/* Navigation buttons */}
-              <div className="flex justify-between mt-8 pt-6 border-t border-divider">
+              <div className="flex flex-col sm:flex-row justify-between mt-8 pt-6 border-t border-divider gap-3">
                 <button
                   onClick={() => setActiveStep(prev => Math.max(1, prev - 1))}
                   disabled={activeStep === 1}
@@ -153,7 +153,7 @@ const CompanyDetailsForm = () => (
 
 const DocumentUploadForm = () => (
   <div className="space-y-6">
-    <div className="border-2 border-dashed border-outline rounded-button p-8 text-center hover:bg-secondaryBg cursor-pointer transition-colors">
+    <div className="border-2 border-dashed border-outline rounded-button p-6 md:p-8 text-center hover:bg-secondaryBg cursor-pointer transition-colors">
       <p className="text-textSecondary mb-1">Drag & drop documents here</p>
       <p className="text-sm text-textSecondary">or click to browse</p>
     </div>

@@ -92,14 +92,14 @@ const DashboardPage = () => {
   return (
     <DashboardLayout pageTitle="Dashboard">
       <div>
-        <p className="text-body-md-desktop text-primary mb-6" style={{ fontWeight: 600 }}>
+        <p className="text-body-md-mobile md:text-body-md-desktop text-primary mb-6" style={{ fontWeight: 600 }}>
           Financial Services
         </p>
 
         {/* Top Row - Dashboard Cards and KYC Card */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
           {/* Dashboard Cards Container */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {/* Dashboard Card 1 */}
             <DashboardCard
               icon={Wallet}
@@ -137,74 +137,79 @@ const DashboardPage = () => {
         </div>
 
         {/* Bottom Row - Ongoing Projects and Tasks */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-4 md:mt-6">
           {/* Ongoing Projects Section */}
-          <div className="lg:col-span-2 bg-card border border-outline rounded-card p-6">
+          <div className="lg:col-span-2 bg-card border border-outline rounded-card p-4 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-h3-mobile text-textPrimary">
+              <h3 className="text-h3-mobile md:text-h3-desktop text-textPrimary">
                 Ongoing Projects
               </h3>
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-disableBg">
-                  <tr className="border-b border-outline">
-                    <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                      Project ID
-                    </th>
-                    <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                      Name/Description
-                    </th>
-                    <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                      Service
-                    </th>
-                    <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                      Status
-                    </th>
-                    <th className="text-left p-3 text-body-sm-desktop text-textSecondary font-medium">
-                      Budget
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ongoingProjects.map((project) => (
-                    <tr key={project.id} className="border-b border-divider">
-                      <td className="p-3 text-body-sm-desktop text-textPrimary font-medium">
-                        {project.id}
-                      </td>
-                      <td className="p-3">
-                        <div>
-                          <div className="text-body-sm-desktop text-textPrimary font-medium">
-                            {project.name}
-                          </div>
-                          <div className="text-xs text-textSecondary">
-                            {project.description}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="p-3 text-body-sm-desktop text-textSecondary">
-                        {project.service}
-                      </td>
-                      <td className="p-3">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-                          {project.status}
-                        </span>
-                      </td>
-                      <td className="p-3 text-body-sm-desktop text-textPrimary font-semibold">
-                        {project.budget}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Table wrapper with horizontal scroll on mobile */}
+            <div className="overflow-x-auto -mx-4 md:mx-0">
+              <div className="inline-block min-w-full align-middle">
+                <div className="overflow-hidden">
+                  <table className="min-w-full divide-y divide-divider">
+                    <thead className="bg-disableBg">
+                      <tr>
+                        <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                          Project ID
+                        </th>
+                        <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                          Name/Description
+                        </th>
+                        <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                          Service
+                        </th>
+                        <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                          Status
+                        </th>
+                        <th className="px-3 py-3 text-left text-body-sm-desktop text-textSecondary font-medium whitespace-nowrap">
+                          Budget
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-card divide-y divide-divider">
+                      {ongoingProjects.map((project) => (
+                        <tr key={project.id} className="hover:bg-secondaryBg/50 transition-colors">
+                          <td className="px-3 py-3 text-body-sm-desktop text-textPrimary font-medium whitespace-nowrap">
+                            {project.id}
+                          </td>
+                          <td className="px-3 py-3 min-w-[200px]">
+                            <div>
+                              <div className="text-body-sm-desktop text-textPrimary font-medium">
+                                {project.name}
+                              </div>
+                              <div className="text-xs text-textSecondary">
+                                {project.description}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-3 text-body-sm-desktop text-textSecondary whitespace-nowrap">
+                            {project.service}
+                          </td>
+                          <td className="px-3 py-3 whitespace-nowrap">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
+                              {project.status}
+                            </span>
+                          </td>
+                          <td className="px-3 py-3 text-body-sm-desktop text-textPrimary font-semibold whitespace-nowrap">
+                            {project.budget}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Tasks Section */}
-          <div className="lg:col-span-1 bg-card border border-outline rounded-card p-6">
+          <div className="lg:col-span-1 bg-card border border-outline rounded-card p-4 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-h3-mobile text-textPrimary">
+              <h3 className="text-h3-mobile md:text-h3-desktop text-textPrimary">
                 Tasks
               </h3>
             </div>
@@ -218,14 +223,14 @@ const DashboardPage = () => {
                   </div>
 
                   {/* Main Content - takes up remaining space */}
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     {/* Priority Badge */}
                     <p className={`text-body-sm-desktop ${getPriorityColor(task.priority)}`} style={{ fontWeight: 500 }}>
                       {task.priority.toUpperCase()}
                     </p>
 
                     {/* Task Title */}
-                    <div className="text-button-desktop text-textPrimary font-medium mt-1">
+                    <div className="text-button-mobile md:text-button-desktop text-textPrimary font-medium mt-1">
                       {task.title}
                     </div>
 
